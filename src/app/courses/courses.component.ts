@@ -7,16 +7,15 @@ import { CoursesService } from '../shared/services/courses.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
+  selectedCourse = null;
+
   courses = null;
-  selectedCourse: any = {
-      title : null
-  };
 
   constructor( private coursesService: CoursesService) { }
 
   ngOnInit(): void {
     this.resetCourse();
-    this.courses = this.coursesService.getAll();
+    this.loadCourses()
   }
 
   resetCourse(){
@@ -35,7 +34,7 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(courseId){
-    console.log(courseId)
+    this.coursesService.delete(courseId).subscribe(result => this.refreshCourses())
   }
 
   cancel(){
@@ -44,10 +43,21 @@ export class CoursesComponent implements OnInit {
 
   saveCourse(course){
     if(course.id){
-      this.coursesService.update(course)
+      this.coursesService.update(course).subscribe(course => this.refreshCourses())
     }else {
-      this.coursesService.save(course)
+      this.coursesService.save(course).subscribe(course => this.refreshCourses());
     }
   }
+
+  loadCourses(){
+    this.coursesService.getAll()
+      .subscribe(courses => this.courses = courses);
+  }
+
+  refreshCourses() {
+    this.resetCourse();
+    this.loadCourses();
+  }
+
 
 }

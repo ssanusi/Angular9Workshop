@@ -1,58 +1,44 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+
+
+const BASE_URL = 'http://localhost:3000/';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CoursesService {
-  private courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true
-    },
-    {
-      id: 2,
-      title: 'Learn React Fundamentals',
-      description: 'Learn the fundamentals of React 16',
-      percentComplete: 50,
-      favorite: true
-    },
-    {
-      id: 3,
-      title: 'Learn Vue Fundamentals',
-      description: 'Learn the fundamentals of Vue 3',
-      percentComplete: 70,
-      favorite: true
-    },
-    {
-      id: 4,
-      title: 'Svelte Fundamentals',
-      description: 'Learn the fundamentals of Svelte',
-      percentComplete: 90,
-      favorite: true
-    }
-  ];
-  constructor() { }
+
+  private model = 'courses'
+
+  constructor(private http:HttpClient) { }
+
+  private getUrl(){
+      return `${BASE_URL}${this.model}`
+  }
+
+  private getUrlById(id){
+    return `${this.getUrl()}/${id}`
+  }
 
   getAll(){
-     return this.courses;
+     return this.http.get(this.getUrl());
   }
 
   getOne(courseId){
-
+    return this.http.get(this.getUrlById(courseId))
   }
 
   save(course){
-
+    return this.http.post(this.getUrl(), course)
   }
 
   update(course){
-
+    return this.http.put(this.getUrlById(course.id), course)
   }
 
   delete(courseId){
-
+    return this.http.delete(this.getUrlById(courseId))
   }
 }
