@@ -18,21 +18,21 @@ export class CoursesComponent implements OnInit {
       id: 2,
       title: 'Learn React Fundamentals',
       description: 'Learn the fundamentals of React 16',
-      percentComplete: 26,
+      percentComplete: 50,
       favorite: true
     },
     {
       id: 3,
       title: 'Learn Vue Fundamentals',
       description: 'Learn the fundamentals of Vue 3',
-      percentComplete: 26,
+      percentComplete: 70,
       favorite: true
     },
     {
       id: 4,
       title: 'Svelte Fundamentals',
       description: 'Learn the fundamentals of Svelte',
-      percentComplete: 26,
+      percentComplete: 90,
       favorite: true
     }
   ];
