@@ -13,12 +13,42 @@ export class CoursesComponent implements OnInit {
       description: 'Learn the fundamentals of Angular 9',
       percentComplete: 26,
       favorite: true
+    },
+    {
+      id: 2,
+      title: 'Learn React Fundamentals',
+      description: 'Learn the fundamentals of React 16',
+      percentComplete: 26,
+      favorite: true
+    },
+    {
+      id: 3,
+      title: 'Learn Vue Fundamentals',
+      description: 'Learn the fundamentals of Vue 3',
+      percentComplete: 26,
+      favorite: true
+    },
+    {
+      id: 4,
+      title: 'Svelte Fundamentals',
+      description: 'Learn the fundamentals of Svelte',
+      percentComplete: 26,
+      favorite: true
     }
   ];
+  currentCourse: any = null;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectCourse(course){
+    this.currentCourse = course;
+  }
+
+  deleteCourse(courseId){
+    console.log(courseId)
   }
 
 }
