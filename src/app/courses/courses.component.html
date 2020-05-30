@@ -28,7 +28,7 @@
           <ng-template #noSelection> No Course Selected</ng-template>
         </mat-card-title>
       </mat-card-header>
-      <form #form="ngForm" (submit)="saveCourse()">
+      <form #form="ngForm" (submit)="saveCourse(selectedCourse)">
         <mat-card-content>
           <mat-form-field class="full-width">
             <input matInput placeholder="title" name="title" [(ngModel)]="selectedCourse.title" type="text" required>
@@ -39,11 +39,8 @@
           </mat-form-field>
           <section>
             <h4>{{selectedCourse.percentComplete}}% Complete</h4>
-            <mat-slider class="full-width"
-            min="0" max="100"
-            step="1" name="percentComplete"
-            thumbLebel
-            [(ngModel)]="selectedCourse.percentComplete">
+            <mat-slider class="full-width" min="0" max="100" step="1" name="percentComplete" thumbLebel
+              [(ngModel)]="selectedCourse.percentComplete">
             </mat-slider>
             <mat-checkbox name="favorite" [(ngModel)]="selectedCourse.favorite"></mat-checkbox>
           </section>

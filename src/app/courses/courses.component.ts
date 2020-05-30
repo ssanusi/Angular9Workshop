@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from '../shared/services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -6,44 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true
-    },
-    {
-      id: 2,
-      title: 'Learn React Fundamentals',
-      description: 'Learn the fundamentals of React 16',
-      percentComplete: 50,
-      favorite: true
-    },
-    {
-      id: 3,
-      title: 'Learn Vue Fundamentals',
-      description: 'Learn the fundamentals of Vue 3',
-      percentComplete: 70,
-      favorite: true
-    },
-    {
-      id: 4,
-      title: 'Svelte Fundamentals',
-      description: 'Learn the fundamentals of Svelte',
-      percentComplete: 90,
-      favorite: true
-    }
-  ];
+  courses = null;
   selectedCourse: any = {
       title : null
   };
 
-  constructor() { }
+  constructor( private coursesService: CoursesService) { }
 
   ngOnInit(): void {
     this.resetCourse();
+    this.courses = this.coursesService.getAll();
   }
 
   resetCourse(){
@@ -69,8 +42,12 @@ export class CoursesComponent implements OnInit {
     this.resetCourse()
   }
 
-  saveCourse(){
-    console.log()
+  saveCourse(course){
+    if(course.id){
+      this.coursesService.update(course)
+    }else {
+      this.coursesService.save(course)
+    }
   }
 
 }
