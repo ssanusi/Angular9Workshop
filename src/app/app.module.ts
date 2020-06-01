@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './shared/services/courses.service';
 import { LessonsService } from './shared/services/lessons.service';
+import { CourseListComponent } from './courses/course-list/course-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { LessonsService } from './shared/services/lessons.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseListComponent,
+    CourseDetailsComponent
   ],
   providers: [
     CoursesService,
